@@ -1,3 +1,12 @@
-const express = require('express')
+import { Router } from 'express'
+import { login, register } from '../controllers/auth.js'
 
-const { login, register } = rquire('../controllers/auth')
+const router = Router()
+
+router.route('/register').post(register)
+router.route('/login').post(login)
+
+// router.post('/register', register)
+// router.post('/login', login)
+
+export default router

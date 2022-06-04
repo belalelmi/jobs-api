@@ -14,10 +14,4 @@ const deleteJob = async (req, res) => {
   res.send('login user')
 }
 
-module.exports = {
-  getAllJobs,
-  getJob,
-  deleteJob,
-  updateJob,
-  createJob,
-}
+export { getAllJobs, getJob, createJob, updateJob, deleteJob }
