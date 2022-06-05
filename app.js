@@ -13,6 +13,7 @@ import jobsRouter from "./routes/jobs.js";
 // error handler
 import notFoundMiddleware from "./middleware/not-found.js";
 import errorHandlerMiddleware from "./middleware/error-handler.js";
+import { authentication } from "./middleware/authentication.js";
 
 dotenv.config();
 
@@ -28,7 +29,7 @@ app.use(json());
 
 // routes
 app.use("/api/v1/auth", authRouter);
-app.use("/api/v1/jobs", jobsRouter);
+app.use("/api/v1/jobs", authentication, jobsRouter);
 
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
