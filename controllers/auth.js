@@ -8,21 +8,8 @@ import User from "../models/User.js";
 // @route   POST /api/v1/auth/register
 // @access  Public
 const register = asyncHandler(async (req, res) => {
-  const { name, email, password } = req.body;
-
-  if (!name || !email || !password) {
-    throw new BadRequestError("Please provide all fields");
-  }
-
-  const userExists = await User.findOne({ email });
-  if (userExists) {
-    throw new BadRequestError("User already exists");
-  }
-
   const user = await User.create({ ...req.body });
   const token = user.createJWT();
-
-  // console.log(user);
 
   if (user) {
     res.status(StatusCodes.CREATED).json({
