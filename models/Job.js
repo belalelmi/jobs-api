@@ -30,7 +30,7 @@ const JobSchema = new mongoose.Schema(
       maxlength: [20, "Location must be at most 20 characters"],
     },
     salary: {
-      type: Number,
+      type: String,
       required: [true, "Salary is required"],
       maxlength: [10, "Salary must be at most 20 characters"],
     },

@@ -15,7 +15,7 @@ const authentication = ayncHandler(async (req, res, next) => {
 
     // console.log(payload);
 
-    req.user = { userId: payload.userID, name: payload.name };
+    req.user = { userID: payload.userID, name: payload.name };
 
     next();
   } catch (err) {
