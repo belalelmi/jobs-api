@@ -1,5 +1,5 @@
 
-YOU CAN FIND THE API DOCUMENTATION [HERE.](https://jobs-api-bhe.herokuapp.com/api-docs/)
+You can find the api documentation [HERE.](https://jobs-api-bhe.herokuapp.com/api-docs/)
 
 #### Setup
 
