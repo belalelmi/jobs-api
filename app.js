@@ -4,6 +4,12 @@ import colors from "colors";
 import morgan from "morgan";
 import express, { json } from "express";
 
+// extra security packages
+import helmet from "helmet";
+import cors from "cors";
+import xss from "xss-clean";
+import rateLimit from "express-rate-limit";
+
 //connectDB
 import connectDB from "./db/connect.js";
 // routers
@@ -16,11 +22,10 @@ import { authentication } from "./middleware/authentication.js";
 
 dotenv.config();
 
-// extra security packages to protect the app
-import helmet from "helmet";
-import cors from "cors";
-import xss from "xss-clean";
-import rateLimit from "express-rate-limit";
+// Swagger
+import swaggerUi from "swagger-ui-express";
+import YAML from "yamljs";
+const swaggerDocument = YAML.load("./swagger.yaml");
 
 connectDB();
 const app = express();
@@ -43,6 +48,13 @@ app.use(helmet());
 app.use(cors());
 app.use(xss());
 
+app.get("/", (req, res) => {
+  res.send(`<h1>Jobs API</h1>
+  <a href="/api-docs">API Documentation</a>`);
+});
+
+app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
+
 // routes
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/jobs", authentication, jobsRouter);
@@ -50,7 +62,7 @@ app.use("/api/v1/jobs", authentication, jobsRouter);
 app.use(notFoundMiddleware);
 app.use(errorHandlerMiddleware);
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 app.listen(
   port,
