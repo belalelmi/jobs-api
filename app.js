@@ -43,6 +43,9 @@ app.use(
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
   })
 );
+
+
+// mounting the specified middleware functions
 app.use(json());
 app.use(helmet());
 app.use(cors());
